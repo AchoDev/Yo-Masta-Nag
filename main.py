@@ -1,5 +1,5 @@
 
-import pygame, os, sys
+import os, sys, pygame
 from cls.Window import Window
 
 pygame.init()
@@ -11,7 +11,7 @@ print(pygame.display.list_modes(32))
 print(pygame.display.mode_ok((1680, 1050), 0, 32))
 
 
-WIN = Window(2560 / 1, 1600 / 1)
+WIN = Window(1920 / 1.5, 1080 / 1.5)
 
 import scenes.game as game, time, scenes.win_screen as win_screen, scenes.select_map as sm, scenes.card_list as cl, scenes.card_select as cs
 # from cls import GameObject, Image, Scene, Window, COL, Button, Text
@@ -116,6 +116,10 @@ def init():
                 cl.page_index.add_number(-1)
             if event.type == cl.CARD_LIST_RIGHT_PRESS:
                 cl.page_index.add_number(1)
+            
+            if event.type == pygame.VIDEORESIZE:
+                game.update_screen_size()
+                print("NIGGER NIGET NIGGER")
 
 
 

@@ -15,7 +15,7 @@ class kuba_colognalo(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "blue" ,"kuba_colognalo.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "kuba_colognalo"
 
@@ -46,7 +46,7 @@ class bubblegum_dealer(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "blue", "bubblegum_dealer.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "bubblegum_dealer"
 

@@ -1,5 +1,6 @@
 
-import main, pygame, os
+import main, os
+import pygame
 
 card_width, card_height = 260 / 2, 350 / 2
 

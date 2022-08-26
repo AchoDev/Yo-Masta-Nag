@@ -14,7 +14,7 @@ class goblin(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "goblin.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "goblin"
 
@@ -29,7 +29,7 @@ class lost_ghost(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "lost_ghost.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "lost_ghost"
 
@@ -44,7 +44,7 @@ class broken_tank(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "broken_tank.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "broken_tank"
 
@@ -63,7 +63,7 @@ class junkie(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "junkie.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "junkie"
 
@@ -98,7 +98,7 @@ class missing_transition(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "missing_transition.jpeg"))
-        super().__init__(0, 0, card_width, card_height, image=image)
+        super().__init__(0, 0, card_width.value, card_height.value, image=image)
 
         self.name = "missing_transition"
 

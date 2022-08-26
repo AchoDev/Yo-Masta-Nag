@@ -1,4 +1,6 @@
-import pygame, sys, os, enum
+import pygame
+
+import sys, os, enum
 from .Colors import COL
 from .Text import Text
 from .GameObject import GameObject
@@ -39,6 +41,11 @@ class Card(GameObject):
 
     def set_image(self, image):
         self.__image = image
+
+    def resize(self, width, height):
+        super().resize(width, height)
+        self.__image.resize(self.width, self.height)
+        self.update_image()
         
     def set_original_pos(self, pos):
         self.__original_pos = pos

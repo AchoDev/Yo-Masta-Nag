@@ -8,8 +8,14 @@ class GameObject:
 
         self.__animation = None
 
+        self.original_size = [width, height]
+
     def attach_animation(self, animation):
         self.__animation = animation
+
+    def resize(self, width, height):
+        self.width = width
+        self.height = height
 
     def set_x(self, x):
         self.x = x

@@ -155,3 +155,18 @@ def wait_and_call(sec, function):
     
     threading.Thread(target=wait_for_seconds).start()
     
+def move_many(direction, objects, win):
+
+    for object in objects:
+        match direction:
+            case "top":
+                object.place_top()
+            case "right":
+                object.place_right(win)
+            case "bot":
+                object.place_bot(win)
+            case "left":
+                object.place_left()
+
+    return objects
+            

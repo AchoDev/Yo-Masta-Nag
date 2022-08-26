@@ -13,12 +13,19 @@ class Image(GameObject):
 
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
 
+    def resize(self, width, height):
+        self.width = width
+        self.height = height
+
+        if self.image != None:
+            self.image = pygame.transform.scale(self.image, (width, height)) 
+
     def get_image(self):
         return self.image
 
     def update(self):
-        self.image = pygame.image.load(self.path).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        self.image = pygame.image.load(self.path).convert()
+        self.image = pygame.transform.scale(self.image, (self.width, self.height)).convert()
 
     def draw(self, window):
         window.win.blit(self.image, (self.x, self.y))

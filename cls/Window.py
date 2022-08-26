@@ -5,7 +5,7 @@ class Window:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.win = pygame.display.set_mode((width, height), pygame.FULLSCREEN, 32)
+        self.win = pygame.display.set_mode((width, height), pygame.RESIZABLE, 32)
 
     def draw_many(self, objects):
         for object in objects:

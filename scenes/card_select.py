@@ -1,7 +1,9 @@
 
 import os
 from cls.Button import Button
-import main, pygame
+import main
+import pygame
+
 
 from cls.Image import Image
 from cls.Square import Square

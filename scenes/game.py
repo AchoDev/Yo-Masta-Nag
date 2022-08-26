@@ -1,6 +1,6 @@
 
-from email import header
-import pygame, random, time, os, sys
+import pygame
+import random, time, os, sys
 # from cls import COL, align_x, move_bottom, align_center, set_hand_positions, set_original_positions, check_collision, move_top
 
 
@@ -24,7 +24,7 @@ from Animations.__class import *
 sys.path.append("..")
 
 
-card_width, card_height = 260 / 1, 350 / 1
+card_width, card_height = Container(260), Container(350) # Container(260 / (WIN.height / 200)), Container(350 / (WIN.height / 200))
 
 from cards.red_cards import *
 from cards.blue_cards import *
@@ -87,17 +87,17 @@ enemy_card1 = goblin(draggable=False)
 enemy_card2 = goblin(draggable=False)
 enemy_card3 = goblin(draggable=False)
 
-drop_area1 = Square(0, (WIN.height // 2), card_width, card_height, COL.green.value, border_radius=10, hollow=True)
-drop_area2 = Square(0, (WIN.height // 2), card_width, card_height, COL.green.value, border_radius=10, hollow=True)
-drop_area3 = Square(0, (WIN.height // 2), card_width, card_height, COL.green.value, border_radius=10, hollow=True)
+drop_area1 = Square(0, (WIN.height // 2), card_width.value, card_height.value, COL.green.value, border_radius=10, hollow=True)
+drop_area2 = Square(0, (WIN.height // 2), card_width.value, card_height.value, COL.green.value, border_radius=10, hollow=True)
+drop_area3 = Square(0, (WIN.height // 2), card_width.value, card_height.value, COL.green.value, border_radius=10, hollow=True)
 
 # enemy_drop_area1 = pygpp.Point(0, (WIN.height // 2) + card_height)
 # enemy_drop_area2 = pygpp.Point(0, (WIN.height // 2) + card_height)
 # enemy_drop_area3 = pygpp.Point(0, (WIN.height // 2) + card_height)
 
-enemy_drop_area1 = Square(0, (WIN.height // 2) - card_height, card_width, card_height, COL.red.value, border_radius=10, hollow=True)
-enemy_drop_area2 = Square(0, (WIN.height // 2) - card_height, card_width, card_height, COL.red.value, border_radius=10, hollow=True)
-enemy_drop_area3 = Square(0, (WIN.height // 2) - card_height, card_width, card_height, COL.red.value, border_radius=10, hollow=True)
+enemy_drop_area1 = Square(0, (WIN.height // 2) - card_height.value, card_width.value, card_height.value, COL.red.value, border_radius=10, hollow=True)
+enemy_drop_area2 = Square(0, (WIN.height // 2) - card_height.value, card_width.value, card_height.value, COL.red.value, border_radius=10, hollow=True)
+enemy_drop_area3 = Square(0, (WIN.height // 2) - card_height.value, card_width.value, card_height.value, COL.red.value, border_radius=10, hollow=True)
 
 
 end_turn_image = Image()
@@ -105,7 +105,7 @@ end_turn_button = None
 
 enemy_turn_image = Image().with_args(100 * 2, 100 * 2, 170 * 2, 150 * 2)
 
-deck_image = Image().with_args(0, 0, card_width, card_height)
+deck_image = Image().with_args(0, 0, card_width.value, card_height.value)
 deck_image.place_bot(main.WIN)
 deck_image.place_right(main.WIN)
 
@@ -116,6 +116,58 @@ deck_image.y -= 100 * 2
 
 # energy_meter = Text(10, 10, COL.black.value, 60, "energy: 3")
 # enemy_energy_meter = Text(10, 10, COL.black.value, 60, "ENEMY energy: 3")
+
+card_combined_width = WIN.width * 0.2
+
+
+def update_screen_size():
+
+    global hand_cards, card_combined_width, enemy_cards
+
+    new_size = pygame.Surface.get_size(WIN.win)
+
+    WIN.width = new_size[0]
+    WIN.height = new_size[1]
+
+    card_combined_width = WIN.width * 0.2
+
+    # os -> orinal size
+    def update_size(object):
+        object.width = object.original_size[0] / (1600 / WIN.width)
+        object.height = object.original_size[1] / (900 / WIN.height)
+
+    card_width.change((260 / 1.5) / (1600 / WIN.width))
+    card_height.change((350 / 1.5) / (900 / WIN.height))
+
+    for card in hand_cards + deck_cards + areas + enemy_areas + enemy_cards:
+        # card.set_image(pygame.transform.scale(card.get_image(), (card_width, card_height)))
+        card.resize(card_width.value, card_height.value)
+
+    for object in [energy_meter, enemy_energy_meter, deck_image]:
+        update_size(object)
+
+    def update_position(object):
+        
+
+    hand_cards = align_x(card_combined_width, hand_cards)
+    hand_cards = align_center_x(WIN.width, hand_cards)
+    hand_cards = move_many("bot", hand_cards, WIN)
+
+    enemy_cards = align_x(card_combined_width, enemy_cards)
+    enemy_cards = align_center_x(WIN.width, enemy_cards)
+    enemy_cards = move_many("top", enemy_cards, WIN)
+
+    for card in active_cards:
+        if card.value:
+            card.value.resize(card_width.value, card_height.value)
+            card.value.update_image()
+
+    # background_image.width = WIN.width
+    # background_image.height = WIN.height
+
+    # background_image.update()
+
+    background_image.resize(WIN.width, WIN.height)
 
 class Energy_Meter(GameObject):
     def __init__(self, xPos, yPos, width, height, images):
@@ -237,7 +289,6 @@ areas = align_center_x(WIN.width, areas)
 enemy_areas = align_x(WIN.width * 0.5, enemy_areas)
 enemy_areas = align_center_x(WIN.width, enemy_areas)
 
-card_combined_width = WIN.width * 0.2
 
 hand_cards = align_x(card_combined_width, hand_cards)
 enemy_cards = align_x(card_combined_width, enemy_cards)
@@ -301,9 +352,9 @@ def load_scene(dt):
     # print(pygame.mouse.get_pos())
 
 
-    for i in range(len(hand_cards)):
-        print(i + 1, "hovered: ", hand_cards[i].is_hovered, " position: ", hand_cards[i].x, hand_cards[i].y)
-    print()
+    # for i in range(len(hand_cards)):
+    #     print(i + 1, "hovered: ", hand_cards[i].is_hovered, " position: ", hand_cards[i].x, hand_cards[i].y)
+    # print()
 
     # print("FPS", 1 / dt)
 
