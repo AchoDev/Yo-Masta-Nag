@@ -23,3 +23,7 @@ def start_game():
         for event in pygame.event.get():
             if event.type == END_TURN:
                 end_turn()
+            if event.type == PLAYER_WON:
+                currentScene = "player_win"
+            if event.type == ENEMY_WON:
+                currentScene = "enemy_win"

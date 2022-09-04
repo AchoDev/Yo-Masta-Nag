@@ -93,10 +93,7 @@ def init():
                 # game.drop_card()
                 pass
             
-            if event.type == PLAYER_WON:
-                currentScene = "player_win"
-            if event.type == ENEMY_WON:
-                currentScene = "enemy_win"
+            
             if event.type == sm.SELECT_PLANKS:
                 # game.MAP_NAME.change("planks")
                 # game.set_map("planks")
