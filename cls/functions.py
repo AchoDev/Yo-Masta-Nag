@@ -8,7 +8,6 @@ def align_x(x_space, objects):
     for object in objects:
         object.x = ((x_space // ln) * i) - ( ( (x_space // ln) // 2) + (object.width // 2))
         i = i + 1
-    return objects
 
 def get_x_aligned_positions(x_space, objects):
     unref_objs = copy.copy(objects) 
@@ -33,7 +32,6 @@ def align_y(y_space, objects):
     for object in objects:
         object.y = ((y_space // ln) * i) - ( ( (y_space // ln) // 2) + (object.height // 2))
         i = i + 1
-    return objects
 
 def move_bottom(height, objects):
     for object in objects:
@@ -156,7 +154,6 @@ def wait_and_call(sec, function):
     threading.Thread(target=wait_for_seconds).start()
     
 def move_many(direction, objects, win):
-
     for object in objects:
         match direction:
             case "top":
@@ -167,6 +164,4 @@ def move_many(direction, objects, win):
                 object.place_bot(win)
             case "left":
                 object.place_left()
-
-    return objects
             

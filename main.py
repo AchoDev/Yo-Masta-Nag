@@ -11,9 +11,12 @@ print(pygame.display.list_modes(32))
 print(pygame.display.mode_ok((1680, 1050), 0, 32))
 
 
-WIN = Window(1920 / 1.5, 1080 / 1.5)
+# WIN = Window(1920 / 1, 1080 / 1)
+# WIN = Window(2560, 1600)
+WIN = Window(1440, 900)
 
-import scenes.game as game, time, scenes.win_screen as win_screen, scenes.select_map as sm, scenes.card_list as cl, scenes.card_select as cs
+import time, scenes.win_screen as win_screen, scenes.select_map as sm, scenes.card_list as cl, scenes.card_select as cs
+from scenes.game_src.all import *
 # from cls import GameObject, Image, Scene, Window, COL, Button, Text
 
 from cls.Button import Button
@@ -32,7 +35,7 @@ from cls.Container import Container
 
 
 FPS = 60
-DELTA_TIME = 0
+
 
 def init():
 
@@ -56,6 +59,7 @@ def init():
     menu_text = Text(0, 100, COL.blue.value, 100, "yo masta NAG !!")
     menu_text.set_x(WIN.get_center()[0] - menu_text.get_width() // 2)
 
+    # currentScene = "logo"
     currentScene = "menu"
 
     run = True
@@ -65,7 +69,7 @@ def init():
 
     current_drawn = []
 
-    prev_time = time.time()
+    
 
     def load_scene(scene):
         scene.load()
@@ -74,9 +78,7 @@ def init():
 
         clock.tick(FPS)
 
-        now = time.time()
-        DELTA_TIME = now - prev_time
-        prev_time = now
+        
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -87,24 +89,23 @@ def init():
                 currentScene = "select_map"
             if event.type == CARD_EVENT:
                 currentScene = "card_list"
-            if event.type == game.CARD_DROP:
+            if event.type == CARD_DROP:
                 # game.drop_card()
                 pass
-            if event.type == game.END_TURN:
-                game.end_turn()
-            if event.type == game.PLAYER_WON:
+            
+            if event.type == PLAYER_WON:
                 currentScene = "player_win"
-            if event.type == game.ENEMY_WON:
+            if event.type == ENEMY_WON:
                 currentScene = "enemy_win"
             if event.type == sm.SELECT_PLANKS:
-                game.MAP_NAME.change("planks")
-                game.set_map("planks")
-                game.set_ui()
+                # game.MAP_NAME.change("planks")
+                # game.set_map("planks")
+                # game.set_ui()
                 currentScene = "select_cards"
             if event.type == sm.SELECT_PALACE:
-                game.MAP_NAME.change("palace")
-                game.set_map("palace")
-                game.set_ui()
+                # game.MAP_NAME.change("palace")
+                # game.set_map("palace") #! UUPDATE THIS HERE
+                # game.set_ui()
                 currentScene = "select_cards"
             if event.type == cl.RETURN_TO_MENU:
                 currentScene = "menu"
@@ -118,8 +119,9 @@ def init():
                 cl.page_index.add_number(1)
             
             if event.type == pygame.VIDEORESIZE:
-                game.update_screen_size()
-                print("NIGGER NIGET NIGGER")
+                if currentScene == "game":
+                    pass
+                    # game.update_screen_size()
 
 
 
@@ -135,7 +137,9 @@ def init():
                 for button in buttons:
                     button.draw(WIN)
             case "game":
-                game.load_scene(DELTA_TIME)
+                # game.load_scene(DELTA_TIME)
+                load_game_scene()
+
             case "player_win":
                 win_screen.load_scene("player")
             case "enemy_win":

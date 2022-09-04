@@ -103,7 +103,7 @@ enemy_drop_area3 = Square(0, (WIN.height // 2) - card_height.value, card_width.v
 end_turn_image = Image()
 end_turn_button = None
 
-enemy_turn_image = Image().with_args(100 * 2, 100 * 2, 170 * 2, 150 * 2)
+enemy_turn_image = Image().with_args(100 * 1, 100 * 1, 170 * 1, 150 * 1)
 
 deck_image = Image().with_args(0, 0, card_width.value, card_height.value)
 deck_image.place_bot(main.WIN)
@@ -111,8 +111,8 @@ deck_image.place_right(main.WIN)
 
 deck_image.set_image(os.path.join("Assets", "Cards", "card_back.png"))
 
-deck_image.x -= 100 * 2
-deck_image.y -= 100 * 2
+deck_image.x -= 100 * 1
+deck_image.y -= 100 * 1
 
 # energy_meter = Text(10, 10, COL.black.value, 60, "energy: 3")
 # enemy_energy_meter = Text(10, 10, COL.black.value, 60, "ENEMY energy: 3")
@@ -122,7 +122,7 @@ card_combined_width = WIN.width * 0.2
 
 def update_screen_size():
 
-    global hand_cards, card_combined_width, enemy_cards
+    global hand_cards, card_combined_width, enemy_cards, areas, enemy_areas
 
     new_size = pygame.Surface.get_size(WIN.win)
 
@@ -142,12 +142,22 @@ def update_screen_size():
     for card in hand_cards + deck_cards + areas + enemy_areas + enemy_cards:
         # card.set_image(pygame.transform.scale(card.get_image(), (card_width, card_height)))
         card.resize(card_width.value, card_height.value)
+    
+
+    deck_image.resize(card_width.value, card_height.value)
+    deck_image.x += deck_image.width // 2
+    deck_image.y += deck_image.height // 2
+
+    for area in areas:
+        area.y = WIN.height // 2
+    for area in enemy_areas:
+        area.y = WIN.height // 2 - area.height
 
     for object in [energy_meter, enemy_energy_meter, deck_image]:
         update_size(object)
 
     def update_position(object):
-        
+        pass
 
     hand_cards = align_x(card_combined_width, hand_cards)
     hand_cards = align_center_x(WIN.width, hand_cards)
@@ -157,6 +167,16 @@ def update_screen_size():
     enemy_cards = align_center_x(WIN.width, enemy_cards)
     enemy_cards = move_many("top", enemy_cards, WIN)
 
+    for card in hand_cards:
+        card.set_original_pos((card.x, card.y))
+
+
+    areas = align_x(WIN.width * 0.4, areas)
+    areas = align_center_x(WIN.width, areas)
+
+    enemy_areas = align_x(WIN.width * 0.4, enemy_areas)
+    enemy_areas = align_center_x(WIN.width, enemy_areas)
+
     for card in active_cards:
         if card.value:
             card.value.resize(card_width.value, card_height.value)
@@ -165,9 +185,9 @@ def update_screen_size():
     # background_image.width = WIN.width
     # background_image.height = WIN.height
 
-    # background_image.update()
 
     background_image.resize(WIN.width, WIN.height)
+    background_image.update()
 
 class Energy_Meter(GameObject):
     def __init__(self, xPos, yPos, width, height, images):
@@ -226,10 +246,10 @@ def set_ui():
     end_turn_image.set_image(os.path.join("Assets", "UI", os_end + "_end_turn.png"))
     enemy_turn_image.set_image(os.path.join("Assets", "UI", os_end + "_enemy_turn.png"))
 
-    end_turn_button = Button.image_button(100 * 2, 100, 170 * 2, 150 * 2, event=END_TURN, image=end_turn_image)
+    end_turn_button = Button.image_button(100 * 1, 100, 170 * 1, 150 * 1, event=END_TURN, image=end_turn_image)
 
-    energy_meter = Energy_Meter(10 * 2, 10 * 2, 160 * 2, 150 * 2, (em_image0, em_image1, em_image2, em_image3))
-    enemy_energy_meter = Energy_Meter(10 * 2, 10 * 2, 160 * 2, 150 * 2, (em_image0, em_image1, em_image2, em_image3))
+    energy_meter = Energy_Meter(10 + 1, 10 * 1, 160 * 1, 150 * 1, (em_image0, em_image1, em_image2, em_image3))
+    enemy_energy_meter = Energy_Meter(10 * 1, 10 * 1, 160 * 1, 150 * 1, (em_image0, em_image1, em_image2, em_image3))
 
     energy_meter.change(3)
     enemy_energy_meter.change(3)
@@ -242,6 +262,9 @@ def set_ui():
 
     enemy_energy_meter.x -= 10
     enemy_energy_meter.y += 10
+
+    update_screen_size()
+
 
 energy = 3
 enemy_energy = 3
@@ -319,7 +342,6 @@ def set_map(map):
         case "palace":
             background_image.set_image(os.path.join("Assets", "Maps", "palace.jpg"))
 
-
 def load_scene(dt):
 
     DELTA_TIME = dt
@@ -364,8 +386,8 @@ def load_scene(dt):
     clock = pygame.time.Clock()
     clock.tick(60)
 
+    #! if own turn make all cards draggable ------------------------------------------------------------------------------------------------------------------------
     
-        
     if is_own_turn:
         for card in hand_cards:
             card.is_draggable = True
@@ -379,6 +401,7 @@ def load_scene(dt):
             if container.value != None:
                 container.value.is_draggable = False
     
+    #! updating aninmation (change to gameobject class) --------------------------------------------------------------------------------
     for card in enemy_cards:
         card.update_animation(DELTA_TIME)
 
@@ -388,6 +411,8 @@ def load_scene(dt):
 
     for card in hand_cards:
         card.update_animation(DELTA_TIME)
+
+    #! check if card died ------------------------------------------------------------------------------------------------------------------------
 
     for card in enemy_cards + hand_cards:
         if card.health <= 0:
@@ -425,6 +450,8 @@ def load_scene(dt):
             temp_list.append(enemy_card)
     enemy_cards = temp_list.copy()
 
+    #! checks if all cards are dead on both sides ------------------------------------------------------------------------------------------------------------------------
+
     if len(hand_cards) + len(deck_cards) == 0:
         pygame.event.post(pygame.event.Event(ENEMY_WON))
 
@@ -432,6 +459,8 @@ def load_scene(dt):
         pygame.event.post(pygame.event.Event(PLAYER_WON))
 
 
+
+    #! draw everything ------------------------------------------------------------------------------------------------------------------------
     # WIN.fill(COL.white.value)
     background_image.draw(WIN)
 
@@ -475,6 +504,7 @@ def load_scene(dt):
 
 enemy_attacking = False
 
+#! function that's called when "end turn" is pressed ----------------------------------------------------------------------------------
 def end_turn():
     global is_own_turn, energy
     
@@ -515,6 +545,8 @@ def end_turn():
         rand_card.attach_animation(Animation(rand_card, (deck_image.x, deck_image.y), target_pos, Animation_Type.ease__in__out.value, 0.75, set_hand_pos, [rand_card, target_pos]))
         
         # rand_card.place_bot(WIN)
+
+    #! checks if own turn 
 
     if is_own_turn:
         is_own_turn = False

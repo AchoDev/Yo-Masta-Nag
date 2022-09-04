@@ -5,7 +5,7 @@ sys.path.append("..")
 
 from cls.Card import *
 from cls.Image import Image
-from scenes.game import card_height, card_width
+import scenes.game_src.obj as obj
 
 
 
@@ -14,7 +14,7 @@ class goblin(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "goblin.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "goblin"
 
@@ -29,7 +29,7 @@ class lost_ghost(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "lost_ghost.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "lost_ghost"
 
@@ -44,7 +44,7 @@ class broken_tank(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "broken_tank.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "broken_tank"
 
@@ -63,7 +63,7 @@ class junkie(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "junkie.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "junkie"
 
@@ -91,14 +91,14 @@ def mt_effect(attacker, victim):
             return None
         
     victim.damage *= 2
-    victim.death_round = game.current_round.value + 1
+    victim.death_round = obj.current_round.value + 1
     attacker.death_list.append(victim)
 
 class missing_transition(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "missing_transition.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "missing_transition"
 
@@ -115,7 +115,7 @@ class missing_transition(Card):
         super().draw(window)
 
         for card in self.death_list:
-            if card.death_round == game.current_round.value:
+            if card.death_round == obj.current_round.value:
                 card.health = 0
                 self.death_list.remove(card)
 

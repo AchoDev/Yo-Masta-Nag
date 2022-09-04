@@ -5,7 +5,7 @@ sys.path.append("..")
 
 from cls.Card import *
 from cls.Image import Image
-from scenes.game import card_height, card_width
+import scenes.game_src.obj as obj
 
 
 def kuba_colognalo_effect(attacker, victim):
@@ -15,7 +15,7 @@ class kuba_colognalo(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "blue" ,"kuba_colognalo.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "kuba_colognalo"
 
@@ -46,7 +46,7 @@ class bubblegum_dealer(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "blue", "bubblegum_dealer.jpeg"))
-        super().__init__(0, 0, card_width.value, card_height.value, image=image)
+        super().__init__(0, 0, obj.card_width.value, obj.card_height.value, image=image)
 
         self.name = "bubblegum_dealer"
 

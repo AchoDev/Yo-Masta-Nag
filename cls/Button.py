@@ -8,9 +8,9 @@ from .functions import sync_position, sync_transform
 
 
 class Button(GameObject):
-    def __init__(self, xPos, yPos, width, height, 
-                color, text, font_size, event, 
-                border_radius = 0, hollow = False):
+    def __init__(self, xPos=0, yPos=0, width=100, height=35, 
+                color=COL.white, text="text", font_size=50, event=None, 
+                border_radius=0, hollow=False):
 
         super().__init__(xPos, yPos, width, height)
 

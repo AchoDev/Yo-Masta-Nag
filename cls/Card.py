@@ -8,7 +8,8 @@ from .functions import sync_transform
 
 sys.path.append("..")
 
-from scenes import game
+# from scenes import game
+from scenes.game_src.drop_card import drop_card
 
 class Card(GameObject):
 
@@ -117,7 +118,7 @@ class Card(GameObject):
     def drop(self):
         # pygame.event.post(pygame.event.Event(self.event))
 
-        game.drop_card(self)
+        drop_card(self)
 
     def return_to_original_position(self):
         self.x = self.__original_pos[0]

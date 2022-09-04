@@ -18,7 +18,7 @@ class Image(GameObject):
         self.height = height
 
         if self.image != None:
-            self.image = pygame.transform.scale(self.image, (width, height)) 
+            self.image = pygame.transform.scale(self.image, (width, height))
 
     def get_image(self):
         return self.image
