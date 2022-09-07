@@ -1,6 +1,7 @@
 
-import main, os
-import pygame
+
+import pygame, os
+from main import WIN
 
 card_width, card_height = 260 / 2, 350 / 2
 
@@ -53,7 +54,7 @@ class Clickable_Card(Image):
                         self.width *= self.multiplicator
                         self.height *= self.multiplicator
 
-                        self.place_center(main.WIN)
+                        self.place_center(WIN)
                     
                         self.update()
                     else:
@@ -71,7 +72,7 @@ class Clickable_Card(Image):
             self.clicked = False
 
 head_text = Text(10, 10, COL.black.value, 120, "All cards")
-head_text.place_center(main.WIN)
+head_text.place_center(WIN)
 head_text.place_top()
 
 back_button = Button(10, 10, 150, 100, COL.white.value, "<---", 75, RETURN_TO_MENU, 5)
@@ -129,11 +130,11 @@ greens = [
 
 
 
-left_button.place_center(main.WIN)
-right_button.place_center(main.WIN)
+left_button.place_center(WIN)
+right_button.place_center(WIN)
 
 left_button.place_left()
-right_button.place_right(main.WIN)
+right_button.place_right(WIN)
 
 page_index = Container(0)
 
@@ -146,19 +147,19 @@ cards = [
 ]
 
 for list in cards:
-    align_grid_center(list, 1000, 1000, main.WIN, 3)
+    align_grid_center(list, 1000, 1000, WIN, 3)
     set_original_positions(list)
 
 def load_scene():
-    main.WIN.fill(COL.yellow.value)
+    WIN.fill(COL.yellow.value)
 
-    main.WIN.draw_many(cards[page_index.value])
+    WIN.draw_many(cards[page_index.value])
 
     for card in cards[page_index.value]:
         if card.is_selected:
-            main.WIN.draw_one(card)
+            WIN.draw_one(card)
 
-    main.WIN.draw_many((
+    WIN.draw_many((
         left_button,
         right_button,
         back_button

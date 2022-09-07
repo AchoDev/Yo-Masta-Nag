@@ -1,33 +1,41 @@
-import main, sys, os, pygame
 
-
-sys.path.append("..")
-
-from cls.Button import Button
-from cls.Image import Image
-from cls.Colors import COL
-from cls.Text import Text
+import os, pygame
+import re
+from main import WIN
+from cls import Image, Colors, Button, Text
+from scenes.game_src.draw import load_game_scene
+from scenes.game_src.obj import reset_board
 
 SELECT_PLANKS = pygame.USEREVENT + 10
 SELECT_PALACE = pygame.USEREVENT + 11
 
-planks_image = Image()
+planks_image = Image.Image()
 planks_image.set_image(os.path.join("Assets", "Maps", "planks.jpg"))
 
 planks_button = Button.image_button(100, 100, 300, 200, SELECT_PLANKS, planks_image)
 
 
-palace_image = Image()
+palace_image = Image.Image()
 palace_image.set_image(os.path.join("Assets", "Maps", "palace.jpg"))
 
 palace_button = Button.image_button(500, 100, 300, 200, SELECT_PALACE, palace_image)
 
-head_text = Text(200, 10, COL.black.value, 120, "SEELECr MAp")
+head_text = Text.Text(200, 10, Colors.COL.black.value, 120, "SEELECr MAp")
 
 def load_scene():
-    main.WIN.fill(COL.yellow.value)
+    while(True):
+        for event in pygame.event.get():
+            if event.type == SELECT_PALACE:
+                reset_board()
+                load_game_scene()
+            if event.type == pygame.QUIT:
+                pygame.quit()
 
-    planks_button.draw(main.WIN)
-    palace_button.draw(main.WIN)
+        WIN.fill(Colors.COL.yellow.value)
 
-    head_text.draw(main.WIN)
+        planks_button.draw(WIN)
+        palace_button.draw(WIN)
+
+        head_text.draw(WIN)
+
+        pygame.display.update()

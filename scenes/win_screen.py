@@ -1,6 +1,5 @@
 import main
-# from ..cls.Colors import COL
-# from ..cls.Text import Text
+
 
 import sys
 sys.path.append("..")
@@ -8,9 +7,10 @@ sys.path.append("..")
 from cls.Colors import COL
 from cls.Text import Text
 
+
+
 def load_scene(winner):
     
-
     while True:
         match winner:
             case "enemy":

@@ -1,10 +1,14 @@
+from cls.Container import Container
+from cls.Image import Image
+from cls.Button import Button
+from cls.functions import *
+import os 
 
-from cards.red_cards import *
-from cards.blue_cards import *
+card_width = Container(45)
+card_height = Container(64)
 
 from main import WIN
 
-from cls.all import *
 
 enemy_hand_cards = []
 hand_cards = []
@@ -36,8 +40,6 @@ energy = Container()
 enemy_energy_meter_images = []
 enemy_energy = Container()
 
-card_width = Container(45)
-card_height = Container(64)
 
 card_combined_width = Container()
 
@@ -53,12 +55,12 @@ current_round = Container(0)
 def update_screen():
     card_combined_width.value = WIN.width * 0.2
 
-def reset_board():
+def reset_board(cards):
 
-    background_image.change(
-        Image.with_args(0, 0, WIN.width, WIN.height)
-    )
-    background_image.value.set_image(os.path.join("Assets", "Maps", "palace.jpg"))
+    background_image.x = WIN.width
+    background_image.y = WIN.height
+    
+    background_image.set_image(os.path.join("Assets", "Maps", "palace.jpg"))
 
     for obj in [hand_cards, enemy_hand_cards]:
         align_x(WIN.width * 0.5, obj.value)
