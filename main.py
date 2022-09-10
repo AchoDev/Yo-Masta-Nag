@@ -15,7 +15,9 @@ print(pygame.display.mode_ok((1680, 1050), 0, 32))
 # WIN = Window(2560, 1600)
 WIN = Window(1440, 900)
 
-from scenes import select_map
+CANVAS_SIZE = (1920, 1080)
+
+from scenes.select_cards import scene as select_cards
 import cls
 
 # 1300
@@ -34,10 +36,10 @@ def init():
     
 
     button_width, button_height = 200 * 2, 50 * 2
-    start_button = cls.Button(WIN.get_center()[0] - button_width // 2, WIN.get_center()[1] - button_height // 2, button_width, button_height, cls.COL.blue.value, "start", 50, START_EVENT)
-    card_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 70, button_width, button_height, cls.COL.blue.value, "cards", 50, CARD_EVENT)
-    option_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 140, button_width, button_height, cls.COL.blue.value, "option", 50, START_EVENT)
-    exit_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 210, button_width, button_height, cls.COL.blue.value, "exit", 50, START_EVENT)
+    start_button = cls.Button(WIN.get_center()[0] - button_width // 2, WIN.get_center()[1] - button_height // 2, button_width, button_height, cls.COL.blue.value, "start", START_EVENT)
+    card_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 70, button_width, button_height, cls.COL.blue.value, "cards", CARD_EVENT)
+    option_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 140, button_width, button_height, cls.COL.blue.value, "option",  START_EVENT)
+    exit_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 210, button_width, button_height, cls.COL.blue.value, "exit", START_EVENT)
 
     buttons = [
         start_button,
@@ -46,7 +48,7 @@ def init():
         exit_button
     ]
 
-    menu_text = cls.Text(0, 100, cls.COL.blue.value, 100, "yo masta NAG !!")
+    menu_text = cls.Text(0, 100, 100, cls.COL.blue.value, "yo masta NAG !!")
     menu_text.set_x(WIN.get_center()[0] - menu_text.get_width() // 2)
 
     # currentScene = "logo"
@@ -70,7 +72,7 @@ def init():
             if event.type == START_EVENT:
                 start = True
                 currentScene = "select_map"
-                select_map.load_scene()
+                select_cards.load_scene()
             if event.type == CARD_EVENT:
                 currentScene = "card_list"
             # if event.type == CARD_DROP:

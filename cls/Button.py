@@ -9,7 +9,7 @@ from .functions import sync_position, sync_transform
 
 class Button(GameObject):
     def __init__(self, xPos=0, yPos=0, width=100, height=35, 
-                color=COL.white, text="text", font_size=50, event=None, 
+                color=COL.white, text="text", event=None, 
                 border_radius=0, hollow=False):
 
         super().__init__(xPos, yPos, width, height)
@@ -18,7 +18,7 @@ class Button(GameObject):
         self.color = color
 
         if text != "IMAGE_BUTTON":
-            self.text = Text(self.x, self.y, COL.black.value, font_size, text) 
+            self.text = Text(self.x, self.y, width // 10, COL.black.value, text)
         
         self.event = event
 

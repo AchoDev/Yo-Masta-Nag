@@ -92,7 +92,7 @@ paralasis_card = Clickable_Card(100, 100, card_width, card_height, os.path.join(
 kuba_card = Clickable_Card(100, 100, card_width, card_height, os.path.join("Assets", "Cards", "blue", "kuba_colognalo.jpeg"))
 dealer_card = Clickable_Card(100, 100, card_width, card_height, os.path.join("Assets", "Cards", "blue", "bubblegum_dealer.jpeg"))
 mario_card = Clickable_Card(100, 100, card_width, card_height, os.path.join("Assets", "Cards", "blue", "mario.jpeg"))
-rejection_card = Clickable_Card(100, 100, card_width, card_height, os.path.join("Assets", "Cards", "blue", "rejection.jpeg"))
+rejection_card = Clickable_Card(100, 100, card_width, card_height, os.path.join("Assets", "Cards", "blue", "sad_rejection.jpeg"))
 comedian_card = Clickable_Card(100, 100, card_width, card_height, os.path.join("Assets", "Cards", "blue", "stand_up_comedian.jpeg"))
 
 # GREEN CARDS
