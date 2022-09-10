@@ -46,12 +46,12 @@ class GameObject:
         else:
             return False
 
-    def place_center(self, win):
-        self.x = win.get_center()[0] - self.get_width() // 2
-        self.y = win.get_center()[1] - self.get_height() // 2
+    def place_center(self, width, height):
+        self.x = width // 2 - self.width // 2
+        self.y = height // 2 - self.height // 2
 
-    def place_right(self, win):
-        self.x = win.width - self.width
+    def place_right(self, width):
+        self.x = width - self.width
     
     def place_left(self):
         self.x = 0
@@ -59,13 +59,21 @@ class GameObject:
     def place_top(self):
         self.y = 0
 
-    def place_bot(self, win):
-        self.y = win.height - self.height
+    def place_bot(self, height):
+        self.y = height - self.height
 
-    def place_top_right(self, win):
-        self.place_right(win)
+    def place_top_right(self, width):
+        self.place_right(width)
         self.place_top()
 
-    def place_bot_left(self, win):
+    def place_bot_left(self, height):
         self.place_left()
-        self.place_bot(win)
+        self.place_bot(height)
+
+    def place_center_left(self, height):
+        self.x = 0
+        self.y = height // 2 - self.height // 2
+
+    def place_center_right(self, width, height):
+        self.x = width - self.width
+        self.y = height // 2 - self.height // 2

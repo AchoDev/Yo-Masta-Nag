@@ -7,23 +7,27 @@ class Window:
         self.height = height
         self.win = pygame.display.set_mode((width, height), pygame.RESIZABLE, 32)
 
-    def draw_many(self, objects):
+    def draw_many(self, objects, canvas_width):
         for object in objects.copy():
             # self.win.blit(object.get_body(), (object.x, object.y))
-            self.draw_one(object)
+            self.draw_one(object, canvas_width)
 
-    def draw_one(self, object):
+    def draw_one(self, object, canvas_width):
 
         obj = copy.copy(object)
-        ratio = object.width / self.width # l + ratio
+        ratio = self.width / canvas_width # l + ratio
             
-        obj.x /= ratio
-        obj.y /= ratio
-        
-        obj.width /= ratio
-        obj.height /= ratio
+        if type(obj).__name__ == "Text":
+            obj.font_size *= ratio
+        else:
 
-        obj.draw(self)
+            obj.x *= ratio
+            obj.y *= ratio
+            
+            obj.width *= ratio
+            obj.height *= ratio
+
+            obj.draw(self)
 
     def draw_rect(self, obj, color):
         rect = pygame.Rect(obj.x, obj.y, obj.width, obj.height)

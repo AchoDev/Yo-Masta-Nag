@@ -1,4 +1,5 @@
 
+
 from .obj import *
 from main import WIN, CANVAS_SIZE
 import cls, copy
@@ -15,6 +16,8 @@ def draw_scene():
     # print(f"bg width: {background_copy.width}")
     # print(f"bg height: {background_copy.height}")
 
-    WIN.draw_one(background)
+    WIN.draw_one(background, 1920)
+    WIN.draw_one(left_button, 1920)
 
-    WIN.draw_many([left_button, right_button, page_text, head_text])
+    WIN.draw_many([cards_background_border, cards_background], 1920)
+    WIN.draw_many([left_button, right_button, head_text, page_text], 1920)
