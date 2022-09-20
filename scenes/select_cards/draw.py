@@ -2,7 +2,8 @@
 
 from .obj import *
 from main import WIN, CANVAS_SIZE
-import cls, copy
+import cls, copy, random, delta_time
+from .drop_card import drop_areas
 
 def draw_scene():
     WIN.fill(cls.COL.white.value)
@@ -21,3 +22,11 @@ def draw_scene():
 
     WIN.draw_many([cards_background_border, cards_background], 1920)
     WIN.draw_many([left_button, right_button, head_text, page_text], 1920)
+
+    WIN.draw_many(drop_areas, 1920)
+    
+    WIN.draw_many(selectable_cards, 1920, True)
+
+
+
+    

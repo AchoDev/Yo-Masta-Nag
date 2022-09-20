@@ -27,6 +27,12 @@ class GameObject:
         self.x = pos[0]
         self.y = pos[1]
 
+    def set_transform(self, transform):
+        self.x = transform.x
+        self.y = transform.y
+        self.width = transform.width
+        self.height = transform.height
+
     def get_width(self):
         return self.width
 
@@ -45,6 +51,9 @@ class GameObject:
             return True
         else:
             return False
+
+    def update(self):
+        pass
 
     def place_center(self, width, height):
         self.x = width // 2 - self.width // 2

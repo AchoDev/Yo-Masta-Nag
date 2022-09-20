@@ -36,10 +36,10 @@ def init():
     
 
     button_width, button_height = 200 * 2, 50 * 2
-    start_button = cls.Button(WIN.get_center()[0] - button_width // 2, WIN.get_center()[1] - button_height // 2, button_width, button_height, cls.COL.blue.value, "start", START_EVENT)
-    card_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 70, button_width, button_height, cls.COL.blue.value, "cards", CARD_EVENT)
-    option_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 140, button_width, button_height, cls.COL.blue.value, "option",  START_EVENT)
-    exit_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 210, button_width, button_height, cls.COL.blue.value, "exit", START_EVENT)
+    start_button = cls.Button(WIN.get_center()[0] - button_width // 2, WIN.get_center()[1] - button_height // 2, 50, button_width, button_height, cls.COL.blue.value, "start", START_EVENT)
+    card_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 70, 50, button_width, button_height, cls.COL.blue.value, "cards", CARD_EVENT)
+    option_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 140, 50, button_width, button_height, cls.COL.blue.value, "option",  START_EVENT)
+    exit_button = cls.Button(WIN.get_center()[0] - button_width // 2, (WIN.get_center()[1] - button_height // 2) + 210, 50, button_width, button_height, cls.COL.blue.value, "exit", START_EVENT)
 
     buttons = [
         start_button,

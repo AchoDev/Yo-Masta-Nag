@@ -17,7 +17,7 @@ def load_scene(winner):
                 main.WIN.fill(COL.red.value)
 
                 text = Text(0, 0, COL.black.value, 70, "oh NO! enemy won?! why you so bad man????")
-                text.place_center(main.WIN)
+                text.place_center(main.WIN) # okan hat mir bei diesem Projekt geholfen!
                 
                 text.draw(main.WIN)
             case "player":

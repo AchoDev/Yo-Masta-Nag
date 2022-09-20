@@ -20,6 +20,8 @@ from .functions import *
 from .GameObject import GameObject
 from .Image import Image
 from .Point import Point
-from .Square import Square
+from .Square import *
 from .Text import Text
 from .Window import Window
+from .Draggable import Draggable
+from .Transform import Transform

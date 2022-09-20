@@ -2,6 +2,7 @@
 import pygame
 from .draw import draw_scene
 from main import WIN
+from delta_time import *
 
 def start():
     while(True):
@@ -15,4 +16,5 @@ def start():
 
 
         draw_scene()
+        update_delta_time()
         pygame.display.update()

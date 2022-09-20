@@ -9,9 +9,9 @@ class Image(GameObject):
     
     def set_image(self, path):
         self.path = path
-        self.image = pygame.image.load(path).convert()
+        self.image = pygame.image.load(path)
 
-        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        # self.image = pygame.transform.scale(self.image, (self.width, self.height)).convert()
 
     def resize(self, width, height):
         self.width = width

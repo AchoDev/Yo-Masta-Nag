@@ -8,22 +8,24 @@ from .functions import sync_position, sync_transform
 
 
 class Button(GameObject):
-    def __init__(self, xPos=0, yPos=0, width=100, height=35, 
+    def __init__(self, xPos=0, yPos=0, font_size=100, width=100, height=35, 
                 color=COL.white, text="text", event=None, 
                 border_radius=0, hollow=False):
 
         super().__init__(xPos, yPos, width, height)
 
-
         self.color = color
 
         if text != "IMAGE_BUTTON":
-            self.text = Text(self.x, self.y, width // 10, COL.black.value, text)
+            self.text = Text(self.x, self.y, font_size, COL.black.value, text)
         
         self.event = event
 
         self.border_radius = border_radius
         self.is_hollow = hollow
+
+        self.font_size = font_size
+
 
         self.clicked = False
 
@@ -51,6 +53,7 @@ class Button(GameObject):
         if self.__image == None:
             window.draw_rect(self, self.color)
             sync_position(self, self.text)
+            self.text.font_size = self.font_size
             self.text.draw(window)
         else:
             self.__image.draw(window)
