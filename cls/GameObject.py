@@ -79,6 +79,10 @@ class GameObject:
         self.place_left()
         self.place_bot(height)
 
+    def place_bot_right(self, width, height):
+        self.place_right(width)
+        self.place_bot(height)
+
     def place_center_left(self, height):
         self.x = 0
         self.y = height // 2 - self.height // 2

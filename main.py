@@ -13,7 +13,7 @@ print(pygame.display.mode_ok((1680, 1050), 0, 32))
 
 # WIN = Window(1920 / 1, 1080 / 1)
 # WIN = Window(2560, 1600)
-WIN = Window(1440, 900)
+WIN = Window(1340, 900)
 
 CANVAS_SIZE = (1920, 1080)
 

@@ -43,6 +43,10 @@ class Button(GameObject):
 
         return btn
 
+    @classmethod
+    def invisible_button(cls):
+        return cls(0, 0, 0, 0, None, "", None, None)
+
     def update_image(self):
         sync_transform(self, self.__image)
         self.__image.update()

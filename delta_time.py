@@ -7,17 +7,20 @@ prev_time = time.time()
 count = 30
 __fps_list = []
 average_fps = 0
+afc = Container(0)
 
 def update_delta_time():
-    global prev_time, DELTA_TIME
+    global prev_time, DELTA_TIME, average_fps
     now = time.time()
     DELTA_TIME = now - prev_time
     prev_time = now
 
+    afc.value = round(average_fps, 2)
+
     __fps_list.append(get_fps())
 
     if len(__fps_list) == count:
-        print(get_average_fps())
+        average_fps = get_average_fps()
         __fps_list.clear()
 
 

@@ -1,6 +1,8 @@
 
 import pygame
+from cls.Colors import COL
 from cls.GameObject import GameObject
+from cls.Square import Square
 
 pygame.font.init()
 
@@ -30,5 +32,12 @@ class Text(GameObject):
         text = self.font.render(self.text, 1, self.color)
         window.win.blit(self.__get_body(), (self.x, self.y))
 
+        self.__set_size()
+        # Square.draw_hollow_square(self, COL.violet.value, window)
+
     def change_text(self, text):
         self.text = text
+
+    def place_center(self, width, height):
+        self.__set_size()
+        super().place_center(width, height)

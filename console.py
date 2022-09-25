@@ -1,0 +1,54 @@
+
+from cls import *
+from main import WIN
+import inspect
+
+__print_list = []
+__watch_list_c = [] # c -> container
+__watch_list = []
+
+def log(string):
+
+    __print_list.insert(0, string)
+
+    def remove_entry():
+        __print_list.remove(string)
+
+    wait_and_call(3, remove_entry)
+
+console_size = (400, 500)
+console_pos = (1920 - console_size[0], 1080 - console_size[1])
+
+__ct = Transform(*console_pos, *console_size)
+font_size = 50
+text_height = 35
+
+is_visible = False
+
+def watch(variable, name, is_container=False):
+    if is_container:
+        __watch_list_c.insert(0, (variable, name))
+    else:
+        __watch_list.insert(0, (variable, name))
+
+
+
+def draw_console():
+
+    if is_visible:
+        WIN.draw_transparent_square(__ct, COL.black.value, 128)
+        
+        i = text_height
+        for variable in __watch_list:
+            WIN.draw_one(Text(__ct.x, (1080 - __ct.height) + i , font_size, COL.white.value, variable[1] + ": " + str(variable[0])), 1920)
+            i += text_height
+
+        for variable in __watch_list_c:
+            WIN.draw_one(Text(__ct.x, (1080 - __ct.height) + i , font_size, COL.white.value, variable[1] + ": " + str(variable[0].value)), 1920)
+            i += text_height
+
+        i = text_height
+        for log in __print_list:
+            if i < __ct.height:
+                WIN.draw_one(Text(__ct.x, 1080 - i, font_size, COL.white.value, log), 1920)
+            i += text_height

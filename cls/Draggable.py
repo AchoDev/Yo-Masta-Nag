@@ -16,7 +16,8 @@ class Draggable():
     def drag(self):
 
         if(self.is_draggable):
-            m_pos = pygame.mouse.get_pos()
+            abs_m_pos = pygame.mouse.get_pos()
+            m_pos = abs_m_pos[0] // window_ratio.value, abs_m_pos[1] // window_ratio.value
 
             if self.is_dragged == True:
                 self.x = m_pos[0] - self.__offset[0]

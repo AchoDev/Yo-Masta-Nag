@@ -55,8 +55,6 @@ def align_center_x(window_width, objects):
 
     for object in objects:
         object.x = object.x + (window_width // 2 - middle_point)
-
-    return objects
     
 def align_center_y(window_height, objects):
 
@@ -69,8 +67,6 @@ def align_center_y(window_height, objects):
 
     for object in objects:
         object.y = object.y + (window_height // 2 - middle_point)
-
-    return objects
 
 def set_original_positions(objects):
     for object in objects:

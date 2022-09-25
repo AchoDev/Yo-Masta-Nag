@@ -20,7 +20,6 @@ class Square(GameObject):
 
     @staticmethod
     def draw_square(object, color, window):
-        
         window.draw_rect(Square.get_square(object), color)
     
     @staticmethod

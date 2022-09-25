@@ -22,6 +22,6 @@ from .Image import Image
 from .Point import Point
 from .Square import *
 from .Text import Text
-from .Window import Window
+from .Window import Window, debug_mode
 from .Draggable import Draggable
 from .Transform import Transform
