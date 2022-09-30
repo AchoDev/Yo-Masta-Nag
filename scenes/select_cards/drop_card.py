@@ -90,3 +90,14 @@ align_grid_center(drop_areas, 700, 550, (1920, 1080), 3)
 for area in drop_areas:
     area.y += 260
 
+
+def get_cards():
+    card_list = []
+
+    for area in drop_areas:
+        if area.put_card:
+            card_list.append(area.put_card)
+        else:
+            return None
+
+    return card_list

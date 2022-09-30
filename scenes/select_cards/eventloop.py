@@ -1,10 +1,14 @@
 
 import pygame
+
+from .drop_card import get_cards
 from .draw import draw_scene
 from .obj import *
 from main import WIN
 import delta_time
-import console, cls
+import console, cls, sys
+
+from ..game_src import scene
 
 def start():
 
@@ -50,7 +54,10 @@ def start():
                 page_text.text = f"Page {str(current_page.value + 1)} / {len(selectable_cards)}"
 
             if event.type == START_GAME_EVENT:
-                console.log("Start Game")
+                cards = get_cards()
+                if cards:
+                    scene.load_scene()
+                
 
 
         draw_scene()

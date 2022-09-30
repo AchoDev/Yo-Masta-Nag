@@ -57,8 +57,8 @@ def update_screen():
 
 def reset_board(cards):
 
-    background_image.x = WIN.width
-    background_image.y = WIN.height
+    background_image.x = 1920
+    background_image.y = 1080
     
     background_image.set_image(os.path.join("Assets", "Maps", "palace.jpg"))
 

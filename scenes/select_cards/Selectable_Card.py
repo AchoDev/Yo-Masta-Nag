@@ -1,3 +1,4 @@
+from email.mime import image
 import os
 from cls import *
 from .drop_card import check_drop
@@ -18,6 +19,8 @@ class Selectable_Card(GameObject, Draggable):
         self.image = get_path(color, image_name)
 
         self.__update_once = False
+
+        self.card_values = [color, image_name]
 
     def set_original_pos(self):
         self.original_pos = (self.x, self.y)
