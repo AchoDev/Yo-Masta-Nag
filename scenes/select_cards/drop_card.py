@@ -93,6 +93,14 @@ for area in drop_areas:
 
 def get_cards():
     card_list = []
+    return [
+        drop_areas[0].put_card,
+        drop_areas[0].put_card,
+        drop_areas[0].put_card,
+        drop_areas[0].put_card,
+        drop_areas[0].put_card,
+        drop_areas[0].put_card
+    ]
 
     for area in drop_areas:
         if area.put_card:
@@ -100,4 +108,5 @@ def get_cards():
         else:
             return None
 
-    return card_list
+
+    # return card_list

@@ -3,10 +3,12 @@ import os, sys
 
 sys.path.append("..")
 
-from cls.Card import *
+from cls import *
+from cls.Card import * 
 import scenes.game_src.obj as obj
 
-class goblin(cls.Card):
+
+class goblin(Card):
     def __init__(self, draggable):
         image = Image()
         image.set_image(os.path.join("Assets", "Cards", "red", "goblin.jpeg"))

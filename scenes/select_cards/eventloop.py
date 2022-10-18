@@ -55,8 +55,9 @@ def start():
 
             if event.type == START_GAME_EVENT:
                 cards = get_cards()
+                console.log(str(cards))
                 if cards:
-                    scene.load_scene()
+                    scene.load_scene(cards)
                 
 
 

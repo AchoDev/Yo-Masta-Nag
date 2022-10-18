@@ -6,6 +6,7 @@ import inspect
 __print_list = []
 __watch_list_c = [] # c -> container
 __watch_list = []
+max_log_count = 100
 
 def log(string):
 
@@ -14,7 +15,11 @@ def log(string):
     def remove_entry():
         __print_list.remove(string)
 
-    wait_and_call(3, remove_entry)
+    if len(__print_list) < max_log_count:
+        wait_and_call(3, remove_entry)
+    else:
+        __print_list.pop(0)
+        
 
 console_size = (400, 500)
 console_pos = (1920 - console_size[0], 1080 - console_size[1])

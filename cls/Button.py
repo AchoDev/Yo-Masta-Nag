@@ -37,7 +37,7 @@ class Button(GameObject):
 
     @classmethod
     def image_button(cls, xPos, yPos, width, height, event, image):
-        btn = cls(xPos, yPos, width, height, None, "IMAGE_BUTTON", None, event)
+        btn = cls(xPos, yPos, 0, width, height, None, "IMAGE_BUTTON", None, event)
         btn.set_image(image)
         btn.update_image()
 

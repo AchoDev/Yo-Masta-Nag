@@ -184,9 +184,9 @@ def move_many(direction, objects, win):
             case "top":
                 object.place_top()
             case "right":
-                object.place_right(win)
+                object.place_right(win.width)
             case "bot":
-                object.place_bot(win)
+                object.place_bot(win.height)
             case "left":
                 object.place_left()
             

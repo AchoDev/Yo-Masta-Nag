@@ -9,7 +9,7 @@ info = pygame.display.Info()
 SCREEN_WIDTH, SCREEN_HEIGHT = info.current_w, info.current_h
 print(pygame.display.list_modes(32))
 print(pygame.display.mode_ok((1680, 1050), 0, 32))
-
+ 
 
 # WIN = Window(1920 / 1, 1080 / 1)
 # WIN = Window(2560, 1600)
@@ -31,8 +31,8 @@ FPS = 60
 
 def init():
 
-    START_EVENT = pygame.USEREVENT + 1
-    CARD_EVENT = pygame.USEREVENT + 6
+    START_EVENT = pygame.USEREVENT + 67
+    CARD_EVENT = pygame.USEREVENT + 68
     
 
     button_width, button_height = 200 * 2, 50 * 2

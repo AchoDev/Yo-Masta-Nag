@@ -105,10 +105,10 @@ class Card(GameObject):
         self.__image.draw(window)
 
         if self.draw_text:
-            health_text = Text(self.x, self.y, COL.black.value, 40, "health:" + str(self.health))
-            lives_text = Text(self.x, self.y + 100, COL.black.value, 40, "lives:" + str(self.lives))
-            cost_text = Text(self.x, self.y + 50, COL.black.value, 40, "cost:" + str(self.cost))
-            damage_text = Text(self.x, self.y + 150, COL.black.value, 40, "damage:" + str(self.damage))
+            health_text = Text(self.x, self.y, 40, COL.black.value, "health:" + str(self.health))
+            lives_text = Text(self.x, self.y + 100, 40, COL.black.value, "lives:" + str(self.lives))
+            cost_text = Text(self.x, self.y + 50, 40, COL.black.value, "cost:" + str(self.cost))
+            damage_text = Text(self.x, self.y + 150, 40, COL.black.value, "damage:" + str(self.damage))
 
             health_text.draw(window)
             lives_text.draw(window)
