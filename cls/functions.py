@@ -156,21 +156,6 @@ def align_grid_center(objects, width, height, window_dimensions, columns):
         align_center_y(window_dimensions[1], list)
         
 
-# def wait_and_call(time, function):
-
-#     async def head():
-#         t = asyncio.create_task(wait_for_seconds())
-#         await t
-
-#     async def wait_for_seconds():
-#         await asyncio.sleep(time)
-#         print("negos")
-#         function()
-    
-#     asyncio.run(head())
-
-#     print("END")
-
 def wait_and_call(sec, function):
     def wait_for_seconds():
         time.sleep(sec)
